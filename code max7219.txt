@@ -1,0 +1,41 @@
+/*VCC 	3.3v
+GND	GND
+DIN	D7
+CLK 	D5
+CS	D4
+*/
+
+#include <SPI.h>
+#include "LedMatrix.h"
+
+
+#define NUMBER_OF_DEVICES 1
+#define CS_PIN D4
+LedMatrix ledMatrix = LedMatrix(NUMBER_OF_DEVICES, CS_PIN);
+int x = 0;
+
+void setup() {
+	ledMatrix.init();
+
+	ledMatrix.setIntensity(1);
+	ledMatrix.setText("S A F W I T ");
+	//ledMatrix.setNextText("Second text");
+}
+
+void loop() {
+
+	ledMatrix.clear();
+	ledMatrix.scrollTextLeft();
+	ledMatrix.drawText();
+	ledMatrix.commit();
+	ledMatrix.setPixel(5, 2);
+	delay(100);
+
+	/*x=x+1;
+	if (x == 400) {
+	   ledMatrix.setNextText("Third text");
+	}
+	*/
+}
+
+
